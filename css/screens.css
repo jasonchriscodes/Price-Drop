@@ -1,0 +1,109 @@
+/* Price Drop: start and results screens */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(env(safe-area-inset-top, 0px) + 24px) 24px calc(env(safe-area-inset-bottom, 0px) + 24px);
+  background: rgba(23, 10, 51, .9);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  text-align: center;
+  overflow-y: auto;
+}
+.overlay[hidden] { display: none; }
+.panel { width: 100%; max-width: 340px; }
+
+/* ---------- Start ---------- */
+.title { font-size: 68px; font-weight: 800; line-height: .9; letter-spacing: -.04em; }
+.title span { display: block; }
+.title span:last-child { color: var(--sun); transform: rotate(-3deg); }
+.lede { font-size: 18px; line-height: 1.4; margin: 18px 0 22px; opacity: .9; }
+
+.rules {
+  list-style: none;
+  text-align: left;
+  display: grid;
+  gap: 12px;
+  margin: 0 auto 26px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.rules li { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 12px; }
+.rule-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: var(--c);
+  color: var(--sky-deep);
+}
+.start-best { font-size: 15px; margin-top: 12px; color: var(--sun); }
+.start-best[hidden] { display: none; }
+.hint { font-size: 14px; opacity: .6; margin-top: 12px; }
+
+/* ---------- Results ---------- */
+.end-head { font-size: 22px; font-weight: 500; opacity: .85; }
+.final {
+  font-size: 92px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+  margin: 4px 0 6px;
+}
+.best-line { font-size: 16px; opacity: .8; }
+.new-best { margin-left: 6px; color: var(--sun); font-weight: 800; }
+.new-best[hidden] { display: none; }
+
+/* Voucher card with ticket notches cut by a mask */
+.voucher {
+  margin: 20px auto 10px;
+  padding: 14px 28px;
+  max-width: 280px;
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--sky-deep);
+  -webkit-mask:
+    radial-gradient(circle at 0 50%, transparent 12px, #000 12.5px) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, transparent 12px, #000 12.5px) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle at 0 50%, transparent 12px, #000 12.5px) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, transparent 12px, #000 12.5px) right / 51% 100% no-repeat;
+}
+.voucher-label { font-size: 14px; font-weight: 500; }
+.voucher-value { font-size: 40px; font-weight: 800; line-height: 1.05; color: #c41d63; letter-spacing: -.02em; }
+.voucher-code { font-size: 15px; font-weight: 800; letter-spacing: .08em; margin-top: 4px; }
+.voucher-note { font-size: 12px; opacity: .65; margin-top: 2px; }
+.stats { font-size: 15px; opacity: .8; margin-bottom: 22px; }
+
+/* ---------- Campaign controls ---------- */
+.plays { font-size: 14px; margin-top: 12px; opacity: .85; }
+.btn-quiet {
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: none;
+  border: 0;
+  color: var(--paper);
+  opacity: .8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.btn-quiet[hidden] { display: none; }
+
+@media (max-height: 640px) {
+  .title { font-size: 52px; }
+  .lede { margin: 12px 0 16px; }
+  .rules { margin-bottom: 18px; gap: 8px; }
+  .final { font-size: 68px; }
+  .voucher { margin-top: 12px; }
+}
