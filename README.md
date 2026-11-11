@@ -6,13 +6,13 @@
 
 A 20-second, one-tap HTML5 game built for the Vouchermatic HTML5 Game Developer Challenge.
 
-[![Play now](https://img.shields.io/badge/▶_Play_now-ffc21a?style=for-the-badge&labelColor=2a1257)](https://jasonchriscodes.github.io/Price-Drop/)
+[![Play now](https://img.shields.io/badge/▶_Play_now-ff3b1d?style=for-the-badge&labelColor=15120e)](https://jasonchriscodes.github.io/Price-Drop/)
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
-![No dependencies](https://img.shields.io/badge/dependencies-none-14d1b8)
-![License: MIT](https://img.shields.io/badge/license-MIT-ff3d8b)
+![No dependencies](https://img.shields.io/badge/dependencies-none-0d7a4f)
+![License: MIT](https://img.shields.io/badge/license-MIT-ffe500)
 
 <img src="docs/screenshots/demo.gif" alt="Price Drop gameplay: the price tag counts down and the player taps to stop it near the target" width="300">
 
@@ -32,6 +32,16 @@ A perfect stop scores 100 points. You lose 8 points for every dollar you're off.
 | Start | Playing | Reward |
 | :---: | :---: | :---: |
 | <img src="docs/screenshots/start.png" width="220" alt="Start screen"> | <img src="docs/screenshots/gameplay.png" width="220" alt="Gameplay"> | <img src="docs/screenshots/result.png" width="220" alt="Results screen with voucher"> |
+
+## Design
+
+Price Drop looks like a **supermarket clearance aisle**, not a generic game UI:
+
+- **Shelf-edge price label.** The falling price sits on a yellow label with a barcode strip and a "NOW" sticker.
+- **Ruler meter.** A red marker shows the target and an ink block shows the current price.
+- **Till-display HUD and clearance ticker.** A black score strip sits above a scrolling "CLEARANCE" band.
+- **Receipt screens.** The start and results screens are torn thermal receipts, and the reward is a red notched coupon.
+- **Type.** Anton for the big numbers and Space Mono for labels.
 
 ## Built for the brief
 
@@ -67,7 +77,7 @@ PD.CONFIG = {
     { min: 120, off: '10% off' },
     { min: 0, off: '5% off' }
   ],
-  theme: { sky: '#2a1257', sun: '#ffc21a', pink: '#ff3d8b' }
+  theme: { paper: '#efe6d0', ink: '#15120e', red: '#ff3b1d', hi: '#ffe500' }
 };
 ```
 
@@ -78,7 +88,7 @@ Price-Drop/
 ├── index.html          Page markup: HUD, play area, start and results screens
 ├── css/
 │   ├── style.css       Theme, layout and in-game styles
-│   └── screens.css     Start and results screens, voucher card
+│   └── screens.css     Start and results receipt screens, voucher coupon
 ├── js/
 │   ├── config.js       Campaign settings and brand colours
 │   ├── audio.js        Web Audio sound effects and haptics
