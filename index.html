@@ -1,91 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-  <meta name="theme-color" content="#2a1257">
-  <title>Price Drop</title>
-  <meta name="description" content="Price Drop: a 20-second HTML5 game. Tap to stop the falling price on the target and unlock a discount.">
-  <meta property="og:title" content="Price Drop">
-  <meta property="og:description" content="Tap to stop the falling price on the target and unlock a discount.">
-  <meta property="og:image" content="https://jasonchriscodes.github.io/Price-Drop/docs/screenshots/gameplay.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏷️</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/screens.css">
-</head>
-<body>
-  <div id="app">
-    <header class="hud">
-      <div><span class="hud-label">Score</span><span class="hud-num" id="score">0</span></div>
-      <div class="hud-center" aria-label="Round"><span id="round">1/3</span></div>
-      <div class="hud-right"><span class="hud-label">Off by</span><span class="hud-num" id="off">–</span></div>
-    </header>
-    <div class="awning" aria-hidden="true"></div>
-
-    <main class="stage" id="stage" aria-label="Play area. Tap anywhere or press Space to stop the price.">
-      <button class="sound-btn" id="sound" type="button" aria-pressed="true" aria-label="Sound on">🔊</button>
-      <p class="target">Stop at <strong id="target">$—</strong></p>
-      <div class="tag-row">
-        <div class="meter" aria-hidden="true">
-          <div class="meter-band" id="band"></div>
-          <div class="meter-pointer" id="pointer"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
+    />
+    <meta name="theme-color" content="#2a1257" />
+    <title>Price Drop</title>
+    <meta
+      name="description"
+      content="Price Drop: a 20-second HTML5 game. Tap to stop the falling price on the target and unlock a discount."
+    />
+    <meta property="og:title" content="Price Drop" />
+    <meta
+      property="og:description"
+      content="Tap to stop the falling price on the target and unlock a discount."
+    />
+    <meta
+      property="og:image"
+      content="https://jasonchriscodes.github.io/Price-Drop/docs/screenshots/gameplay.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏷️</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/screens.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="hud">
+        <div>
+          <span class="hud-label">Score</span
+          ><span class="hud-num" id="score">0</span>
         </div>
-        <div class="tag" id="tag">
-          <span class="tag-hole"></span>
-          <span class="tag-price" id="price">$99.99</span>
+        <div class="hud-center" aria-label="Round">
+          <span id="round">1/3</span>
         </div>
-      </div>
-      <p class="result" id="result" aria-live="polite"></p>
-      <button class="btn stop-btn" id="stop" type="button">Stop</button>
-      <div class="dots" id="dots" aria-hidden="true"><i></i><i></i><i></i></div>
-    </main>
-
-    <section id="start" class="overlay" aria-labelledby="start-title">
-      <div class="panel">
-        <h1 class="title" id="start-title"><span>Price</span><span>Drop</span></h1>
-        <p class="lede">Stop the falling price as close to the target as you can.</p>
-        <ul class="rules">
-          <li><span class="rule-icon" style="--c: var(--pink)">$</span><span>The price drops fast. Tap to stop it on the target.</span></li>
-          <li><span class="rule-icon" style="--c: var(--teal)">3</span><span>Three rounds, each one faster than the last</span></li>
-          <li><span class="rule-icon" style="--c: var(--sun)">%</span><span>The closer you stop, the bigger your discount</span></li>
-        </ul>
-        <button class="btn play-btn" id="play" type="button">Play</button>
-        <p class="plays"></p>
-        <button class="btn-quiet reset-plays" type="button" hidden>Reset plays (demo)</button>
-        <p class="start-best" id="start-best" hidden></p>
-        <p class="hint">Tap anywhere, or press Space</p>
-      </div>
-    </section>
-
-    <section id="end" class="overlay" aria-labelledby="end-head" hidden>
-      <div class="panel">
-        <p class="end-head" id="end-head">Final score</p>
-        <p class="final" id="final-score">0</p>
-        <p class="best-line">Best <span id="best">0</span><span class="new-best" id="new-best" hidden>New best!</span></p>
-        <div class="voucher" role="group" aria-label="Your reward">
-          <p class="voucher-label">You unlocked</p>
-          <p class="voucher-value" id="reward">5% off</p>
-          <p class="voucher-code" id="code">DROP-000000</p>
-          <p class="voucher-note">Demo reward. Tiers are set per campaign.</p>
+        <div class="hud-right">
+          <span class="hud-label">Off by</span
+          ><span class="hud-num" id="off">–</span>
         </div>
-        <p class="stats" id="stats"></p>
-        <button class="btn play-btn" id="again" type="button">Play again</button>
-        <p class="plays"></p>
-        <button class="btn-quiet reset-plays" type="button" hidden>Reset plays (demo)</button>
-        <br>
-        <button class="btn-quiet" id="share" type="button" hidden>Share score</button>
-      </div>
-    </section>
-  </div>
+      </header>
+      <div class="awning" aria-hidden="true"></div>
 
-  <script src="js/config.js"></script>
-  <script src="js/audio.js"></script>
-  <script src="js/campaign.js"></script>
-  <script src="js/game.js"></script>
-  <script src="js/screens.js"></script>
-</body>
+      <main
+        class="stage"
+        id="stage"
+        aria-label="Play area. Tap anywhere or press Space to stop the price."
+      >
+        <button
+          class="sound-btn"
+          id="sound"
+          type="button"
+          aria-pressed="true"
+          aria-label="Sound on"
+        >
+          🔊
+        </button>
+        <p class="target">Stop at <strong id="target">$—</strong></p>
+        <div class="tag-row">
+          <div class="meter" aria-hidden="true">
+            <div class="meter-band" id="band"></div>
+            <div class="meter-pointer" id="pointer"></div>
+          </div>
+          <div class="tag" id="tag">
+            <span class="tag-hole"></span>
+            <span class="tag-price" id="price">$99.99</span>
+          </div>
+        </div>
+        <p class="result" id="result" aria-live="polite"></p>
+        <button class="btn stop-btn" id="stop" type="button">Stop</button>
+        <div class="dots" id="dots" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </div>
+      </main>
+
+      <section id="start" class="overlay" aria-labelledby="start-title">
+        <div class="panel">
+          <h1 class="title" id="start-title">
+            <span>Price</span><span>Drop</span>
+          </h1>
+          <p class="lede">
+            Stop the falling price as close to the target as you can.
+          </p>
+          <ul class="rules">
+            <li>
+              <span class="rule-icon" style="--c: var(--pink)">$</span
+              ><span>The price drops fast. Tap to stop it on the target.</span>
+            </li>
+            <li>
+              <span class="rule-icon" style="--c: var(--teal)">3</span
+              ><span>Three rounds, each one faster than the last</span>
+            </li>
+            <li>
+              <span class="rule-icon" style="--c: var(--sun)">%</span
+              ><span>The closer you stop, the bigger your discount</span>
+            </li>
+          </ul>
+          <button class="btn play-btn" id="play" type="button">Play</button>
+          <p class="plays"></p>
+          <button class="btn-quiet reset-plays" type="button" hidden>
+            Reset plays (demo)
+          </button>
+          <p class="start-best" id="start-best" hidden></p>
+          <p class="hint">Tap anywhere, or press Space</p>
+        </div>
+      </section>
+
+      <section id="end" class="overlay" aria-labelledby="end-head" hidden>
+        <div class="panel">
+          <p class="end-head" id="end-head">Final score</p>
+          <p class="final" id="final-score">0</p>
+          <p class="best-line">
+            Best <span id="best">0</span
+            ><span class="new-best" id="new-best" hidden>New best!</span>
+          </p>
+          <div class="voucher" role="group" aria-label="Your reward">
+            <p class="voucher-label">You unlocked</p>
+            <p class="voucher-value" id="reward">5% off</p>
+            <p class="voucher-code" id="code">DROP-000000</p>
+            <p class="voucher-note">Demo reward. Tiers are set per campaign.</p>
+          </div>
+          <p class="stats" id="stats"></p>
+          <button class="btn play-btn" id="again" type="button">
+            Play again
+          </button>
+          <p class="plays"></p>
+          <button class="btn-quiet reset-plays" type="button" hidden>
+            Reset plays (demo)
+          </button>
+          <br />
+          <button class="btn-quiet" id="share" type="button" hidden>
+            Share score
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/campaign.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/screens.js"></script>
+  </body>
 </html>
