@@ -88,11 +88,16 @@
     if (!running) return;
     if (paused) return;
     price -= CONFIG.speeds[round - 1] * dt;
-    if (price < 0) price += 100; // wrap around so a late tap is never a dead end
+    if (price <= 0) { // time's up: the round is time-bound, so reaching $0 ends it
+      price = 0;
+      render();
+      stop(true);
+      return;
+    }
     render();
   }
 
-  function stop() {
+  function stop(timedOut) {
     if (!running) return;
     running = false;
     cancelAnimationFrame(rafId);
@@ -101,13 +106,15 @@
     price = Math.round(price * 100) / 100;
     render();
     const diff = Math.round(Math.abs(price - target) * 100) / 100;
-    const pts = scoreFor(diff);
+    const pts = timedOut === true ? 0 : scoreFor(diff);
     total += pts;
     results.push(diff);
 
     el.score.textContent = total;
     el.off.textContent = fmt(diff);
-    el.result.textContent = verdictFor(diff) + ' Stopped at ' + fmt(price) + ', ' + fmt(diff) + ' off. +' + pts;
+    el.result.textContent = timedOut === true
+      ? "Too slow! It hit $0.00. +0"
+      : verdictFor(diff) + ' Stopped at ' + fmt(price) + ', ' + fmt(diff) + ' off. +' + pts;
     void el.tag.offsetWidth; // restart the pop animation
     el.tag.classList.add('hit');
     el.dots[round - 1].className = 'done';

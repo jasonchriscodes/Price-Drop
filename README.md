@@ -4,7 +4,7 @@
 
 **Stop the falling price on the target. Unlock a discount.**
 
-A 20-second, one-tap HTML5 game built for the Vouchermatic HTML5 Game Developer Challenge.
+A 15-second, one-tap HTML5 game built for the Vouchermatic HTML5 Game Developer Challenge.
 
 [![Play now](https://img.shields.io/badge/▶_Play_now-ff3b1d?style=for-the-badge&labelColor=15120e)](https://jasonchriscodes.github.io/Price-Drop/)
 
@@ -22,7 +22,7 @@ A 20-second, one-tap HTML5 game built for the Vouchermatic HTML5 Game Developer 
 
 1. A price tag drops quickly from **$99.99**.
 2. Tap anywhere (or press **Space**) to stop it as close to the **target price** as you can.
-3. Play three rounds. Each one is faster than the last.
+3. Play three rounds. Each one is faster than the last, and if the price hits **$0.00** before you tap, the round ends with 0 points.
 4. Your total score unlocks a voucher, from **5% off** up to **20% off**.
 
 A perfect stop scores 100 points. You lose 8 points for every dollar you're off.
@@ -48,7 +48,7 @@ Price Drop looks like a **supermarket clearance aisle**, not a generic game UI:
 | Challenge requirement | How Price Drop meets it |
 | --- | --- |
 | Simple, minimal learning time | One action: tap to stop. Rules fit on one screen. |
-| Quick to play and complete | Three rounds, about 20 seconds in total. |
+| Quick to play and complete | Time-bound: three rounds, and each ends when the price hits $0, so a full game never runs past about 11 seconds. |
 | Unique concept | A timing game built around a falling price, not a reskin of catch, match or tap games. |
 | Customer engagement and campaigns | Score unlocks a reward tier with a voucher code, and players can share their score. |
 | Repeat participation | Instant replay, saved best score and a daily play limit. |
