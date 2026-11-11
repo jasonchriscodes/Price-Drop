@@ -215,6 +215,10 @@ html, body {
 }
 .tag-price {
   display: block;
+  /* fixed width (widest price is $99.99) so the tag and meter never shift as digits change */
+  width: 2.8em;
+  text-align: center;
+  white-space: nowrap;
   font-family: var(--font-display);
   font-size: clamp(56px, 17vw, 88px);
   line-height: 1.05;
