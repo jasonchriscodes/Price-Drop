@@ -56,7 +56,6 @@
   btn.addEventListener('click', () => {
     unlock();
     on = !on;
-    btn.textContent = on ? '🔊' : '🔇';
     btn.setAttribute('aria-pressed', String(on));
     btn.setAttribute('aria-label', on ? 'Sound on' : 'Sound off');
   });

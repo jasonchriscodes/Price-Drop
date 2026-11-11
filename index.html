@@ -64,7 +64,16 @@
           aria-pressed="true"
           aria-label="Sound on"
         >
-          🔊
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor" />
+            <g class="icon-on" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+              <path d="M15.5 9a4.5 4.5 0 0 1 0 6" />
+              <path d="M18.5 6a8.5 8.5 0 0 1 0 12" />
+            </g>
+            <g class="icon-off" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+              <path d="M16 9.5l5 5M21 9.5l-5 5" />
+            </g>
+          </svg>
         </button>
         <p class="target">Stop at <strong id="target">$—</strong></p>
         <div class="tag-row">

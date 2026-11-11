@@ -276,9 +276,13 @@ html, body {
   background: var(--paper);
   box-shadow: 3px 3px 0 var(--ink);
   color: var(--ink);
-  font-size: 17px;
+  display: grid;
+  place-items: center;
   cursor: pointer;
 }
+.sound-btn svg { display: block; }
+.sound-btn[aria-pressed="false"] .icon-on,
+.sound-btn[aria-pressed="true"] .icon-off { display: none; }
 .sound-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
 
 /* ---------- Accessibility and small screens ---------- */
