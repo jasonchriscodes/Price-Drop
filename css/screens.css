@@ -1,27 +1,65 @@
-/* Price Drop: start and results screens */
+/* Price Drop: start and results screens
+   Both screens are a torn thermal receipt on a dark counter. */
 
 .overlay {
   position: absolute;
   inset: 0;
   z-index: 5;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: calc(env(safe-area-inset-top, 0px) + 24px) 24px calc(env(safe-area-inset-bottom, 0px) + 24px);
-  background: rgba(23, 10, 51, .9);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  padding: calc(env(safe-area-inset-top, 0px) + 20px) 20px calc(env(safe-area-inset-bottom, 0px) + 20px);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, rgba(255, 255, 255, .03) 14px 28px),
+    rgba(21, 18, 14, .94);
   text-align: center;
   overflow-y: auto;
 }
 .overlay[hidden] { display: none; }
-.panel { width: 100%; max-width: 340px; }
+
+.panel {
+  width: 100%;
+  max-width: 340px;
+  margin: auto;
+  padding: 34px 24px 38px;
+  background: #fffdf4;
+  color: var(--ink);
+  /* torn zigzag edges top and bottom */
+  --z: 14px;
+  -webkit-mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / var(--z) 51% repeat-x,
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--z) 51% repeat-x;
+  mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / var(--z) 51% repeat-x,
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--z) 51% repeat-x;
+}
 
 /* ---------- Start ---------- */
-.title { font-size: 68px; font-weight: 800; line-height: .9; letter-spacing: -.04em; }
+.title {
+  font-family: var(--font-display);
+  font-size: 84px;
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
 .title span { display: block; }
-.title span:last-child { color: var(--sun); transform: rotate(-3deg); }
-.lede { font-size: 18px; line-height: 1.4; margin: 18px 0 22px; opacity: .9; }
+.title span:last-child {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 16px 0;
+  background: var(--red);
+  color: #fffdf4;
+  transform: rotate(-3deg);
+}
+.lede {
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 22px 0 18px;
+  padding: 12px 0;
+  border-top: 2px dashed var(--ink);
+  border-bottom: 2px dashed var(--ink);
+}
 
 .rules {
   list-style: none;
@@ -29,46 +67,58 @@
   display: grid;
   gap: 12px;
   margin: 0 auto 26px;
-  font-size: 15px;
-  line-height: 1.35;
+  font-size: 13px;
+  line-height: 1.4;
 }
 .rules li { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 12px; }
 .rule-icon {
   width: 34px;
   height: 34px;
-  border-radius: 9px;
   display: grid;
   place-items: center;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 20px;
   background: var(--c);
-  color: var(--sky-deep);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
 }
-.start-best { font-size: 15px; margin-top: 12px; color: var(--sun); }
+.start-best { font-size: 13px; font-weight: 700; margin-top: 14px; color: var(--red); }
 .start-best[hidden] { display: none; }
-.hint { font-size: 14px; opacity: .6; margin-top: 12px; }
+.hint { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .55; margin-top: 14px; }
 
 /* ---------- Results ---------- */
-.end-head { font-size: 22px; font-weight: 500; opacity: .85; }
+.end-head {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
 .final {
-  font-size: 92px;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 120px;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: -.04em;
   font-variant-numeric: tabular-nums;
   margin: 4px 0 6px;
 }
-.best-line { font-size: 16px; opacity: .8; }
-.new-best { margin-left: 6px; color: var(--sun); font-weight: 800; }
+.best-line { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.new-best {
+  margin-left: 8px;
+  padding: 1px 8px;
+  background: var(--hi);
+  border: 2px solid var(--ink);
+  font-weight: 700;
+}
 .new-best[hidden] { display: none; }
 
-/* Voucher card with ticket notches cut by a mask */
+/* Voucher: a red coupon with ticket notches cut by a mask */
 .voucher {
-  margin: 20px auto 10px;
-  padding: 14px 28px;
+  margin: 22px auto 14px;
+  padding: 16px 28px 14px;
   max-width: 280px;
-  border-radius: 10px;
-  background: var(--paper);
-  color: var(--sky-deep);
+  background: var(--red);
+  color: #fffdf4;
   -webkit-mask:
     radial-gradient(circle at 0 50%, transparent 12px, #000 12.5px) left / 51% 100% no-repeat,
     radial-gradient(circle at 100% 50%, transparent 12px, #000 12.5px) right / 51% 100% no-repeat;
@@ -76,24 +126,39 @@
     radial-gradient(circle at 0 50%, transparent 12px, #000 12.5px) left / 51% 100% no-repeat,
     radial-gradient(circle at 100% 50%, transparent 12px, #000 12.5px) right / 51% 100% no-repeat;
 }
-.voucher-label { font-size: 14px; font-weight: 500; }
-.voucher-value { font-size: 40px; font-weight: 800; line-height: 1.05; color: #c41d63; letter-spacing: -.02em; }
-.voucher-code { font-size: 15px; font-weight: 800; letter-spacing: .08em; margin-top: 4px; }
-.voucher-note { font-size: 12px; opacity: .65; margin-top: 2px; }
-.stats { font-size: 15px; opacity: .8; margin-bottom: 22px; }
+.voucher-label { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.voucher-value {
+  font-family: var(--font-display);
+  font-size: 58px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--hi);
+}
+.voucher-code {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 2px dashed rgba(255, 253, 244, .7);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+.voucher-note { font-size: 10px; opacity: .8; margin-top: 4px; }
+.stats { font-size: 12px; margin-bottom: 22px; opacity: .8; }
 
 /* ---------- Campaign controls ---------- */
-.plays { font-size: 14px; margin-top: 12px; opacity: .85; }
+.plays { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-top: 14px; }
 .btn-quiet {
   font: inherit;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
   margin-top: 10px;
   padding: 8px 14px;
   background: none;
   border: 0;
-  color: var(--paper);
-  opacity: .8;
+  color: var(--ink);
+  opacity: .75;
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
@@ -101,9 +166,10 @@
 .btn-quiet[hidden] { display: none; }
 
 @media (max-height: 640px) {
-  .title { font-size: 52px; }
-  .lede { margin: 12px 0 16px; }
+  .panel { padding: 26px 22px 30px; }
+  .title { font-size: 60px; }
+  .lede { margin: 14px 0 12px; padding: 8px 0; }
   .rules { margin-bottom: 18px; gap: 8px; }
-  .final { font-size: 68px; }
+  .final { font-size: 80px; }
   .voucher { margin-top: 12px; }
 }

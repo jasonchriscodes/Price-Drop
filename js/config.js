@@ -27,12 +27,12 @@ PD.CONFIG = {
 
   // Brand colours, applied to the CSS variables in css/style.css
   theme: {
-    'sky': '#2a1257',
-    'sky-deep': '#170a33',
-    'paper': '#fff7e8',
-    'pink': '#ff3d8b',
-    'teal': '#14d1b8',
-    'sun': '#ffc21a'
+    'paper': '#efe6d0',
+    'paper-deep': '#ddd0ae',
+    'ink': '#15120e',
+    'red': '#ff3b1d',
+    'hi': '#ffe500',
+    'green': '#0d7a4f'
   }
 };
 
